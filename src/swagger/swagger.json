@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
+    "description": "API'S for Rental vehicle and User Data",
     "version": "1.0.0",
     "title": "Vehicle Rental API",
     "contact": {
@@ -71,6 +71,36 @@
         }
       }
     },
+    "/loginuser": {
+      "post": {
+        "summary": "User login",
+        "description": "Authenticate user credentials",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful login",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/vehicles/{id}": {
       "get": {
         "summary": "Get a particular vehicle",
@@ -127,6 +157,20 @@
           "type": "string"
         },
         "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         }
       }
