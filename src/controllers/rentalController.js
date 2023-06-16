@@ -5,11 +5,16 @@ import rentalModel from "../models/rentModel.js";
 export const rentVehicle = async (req, res) => {
     try {
         const { userId, vehicleId, rentalDates } = req.body;
-        const rental = await rentalModel.create({ userId, vehicleId, rentalDates });
+        const rental = await rentalModel.create({
+          userId,
+          vehicleId,
+          rentalDates: rentalDates.map(date => new Date(date))
+        });
         res.status(201).json(rental);
-    } catch (err) {
+      } catch (err) {
+        console.error(err);
         res.status(500).json({ error: 'Failed to rent a vehicle' });
-    }
+      }
 }
 
 

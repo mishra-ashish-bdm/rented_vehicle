@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const rentalSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    vehicleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle', required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
+    vehicleId: { type: mongoose.Schema.Types.ObjectId, ref: 'vehicle', required: true },
     rentalDates: [{ type: Date, required: true }]
   });
 
