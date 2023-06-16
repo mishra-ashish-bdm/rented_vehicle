@@ -5,7 +5,10 @@ import userRouter from './routes/userRoute.js';
 import rentalRouter from './routes/rentalRoute.js';
 import vehicleRouter from './routes/vehicleRoute.js';
 import seedData from './seeder/vehicleSeed.js';
+import swaggerUi  from 'swagger-ui-express'
+import swaggerDocument from './swagger/swagger.json'assert { type: "json" }
 import fs from 'fs';
+const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 
 const app = express();
 app.use(express.json());
@@ -41,10 +44,12 @@ async function setSeededDataFlag() {
         });
     });
 }
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
 app.use(userRouter);
 app.use(vehicleRouter);
 app.use(rentalRouter);
+
 
 // Check if the seeded data flag is set
 checkSeededDataFlag()

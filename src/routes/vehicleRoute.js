@@ -4,7 +4,7 @@ import { getVehicleTypes, getVehiclesByType } from '../controllers/vehicleContro
 const vehicleRouter = express.Router()
 
 vehicleRouter.get('/vehicle-types',getVehicleTypes)
-vehicleRouter.get('/vehicles/:vehicleType',getVehiclesByType)
+vehicleRouter.get('/vehicles/:id',getVehiclesByType)
 
 
 export default  vehicleRouter

@@ -16,8 +16,10 @@ export const getVehicleTypes = async (req, res) => {
 
 export const getVehiclesByType = async (req, res) => {
     try {
-        const { vehicleType } = req.params;
-        const vehicles = await vehicleModel.find({ type: vehicleType });
+        const  id = req.params.id;
+        console.log(id);
+        const vehicles = await vehicleModel.findById({ _id:id });
+        console.log('this is vehicles');
         res.status(200).json(vehicles);
     } catch (err) {
         res.status(500).json({ error: 'Failed to retrieve vehicles' });
