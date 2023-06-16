@@ -129,6 +129,36 @@
           }
         }
       }
+    },
+    "/rentals": {
+      "post": {
+        "summary": "Create a new rental",
+        "description": "Create a new rental",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Rental"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Rental created successfully",
+            "schema": {
+              "$ref": "#/definitions/Rental"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -172,6 +202,24 @@
         },
         "password": {
           "type": "string"
+        }
+      }
+    },
+    "Rental": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "vehicleId": {
+          "type": "string"
+        },
+        "rentalDates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
         }
       }
     },
