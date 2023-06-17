@@ -52,4 +52,33 @@ export const vehicleRentByUser = async (req, res) => {
 };
 
 
+export const bookVehicle = async (req, res) => {
+  try {
+    const { user, vehicleId, rentalDates } = req.body;
+
+    // Check if the vehicle is available for the given rental dates
+    const existingRental = await rentalModel.findOne({
+      vehicleId,
+      rentalDates: { $in: rentalDates },
+    });
+
+    if (existingRental) {
+      return res.status(400).json({ message: 'Vehicle is already booked for the given dates.' });
+    }
+
+    // Create a new rental entry
+    const rental = new rentalModel({
+      user,
+      vehicleId,
+      rentalDates,
+    });
+
+    await rental.save();
+
+    return res.status(200).json({ message: 'Vehicle booked successfully.' });
+  } catch (error) {
+    return res.status(500).json({ message: 'An error occurred while booking the vehicle.' });
+  }
+};
+
 

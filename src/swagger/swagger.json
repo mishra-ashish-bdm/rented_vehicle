@@ -204,6 +204,36 @@
           }
         }
       }
+    },
+    "/bookvehicle": {
+      "post": {
+        "summary": "Book a vehicle",
+        "description": "Book a vehicle for rental",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Rental"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Vehicle booked successfully",
+            "schema": {
+              "$ref": "#/definitions/Rental"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -253,7 +283,7 @@
     "Rental": {
       "type": "object",
       "properties": {
-        "userId": {
+        "user": {
           "type": "string"
         },
         "vehicleId": {
