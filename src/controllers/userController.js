@@ -30,13 +30,13 @@ export const loginUser = async (req, res) => {
         const user = await userModel.findOne({ email: email });
 
         if (!user) {
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Invalid email or password' });
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Invalid email or password' });
         }
 
         const token = jwt.sign({ email: user.email }, process.env.JWT, { expiresIn: '1h' });
@@ -45,3 +45,16 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ error: 'Error logging in' });
     }
 }
+
+
+export const detailsOfUser = async(req,res)=>{
+    try {
+        let userDetails = await userModel.find({})
+         res.status(200).json({
+             data:userDetails
+         })
+    } catch (error) {
+        res.status(500).json({ error: 'something went wrong' });
+    }
+}
+

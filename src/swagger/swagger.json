@@ -159,6 +159,51 @@
           }
         }
       }
+    },
+    "/vehiclerentbyuser": {
+      "get": {
+        "summary": "Get rentals by user",
+        "description": "Get all vehicle rentals by a user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Rental"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/userdetails": {
+      "get": {
+        "summary": "Get user details",
+        "description": "Get user details by ID",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
