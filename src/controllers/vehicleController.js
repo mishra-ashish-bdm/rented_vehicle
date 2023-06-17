@@ -7,6 +7,7 @@ export const getVehicleTypes = async (req, res) => {
         const vehicleTypes = await vehicleModel.distinct('type');
         res.status(200).json(vehicleTypes);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: 'Failed to retrieve vehicle types' });
     }
 }

@@ -38,8 +38,5 @@ export default async function seedData() {
     console.log("All vehicles saved successfully.");
   } catch (error) {
     console.error("Error occurred while saving vehicles:", error);
-  } finally {
-    mongoose.disconnect();
-    console.log("Disconnected from MongoDB server.");
-  }
+  } 
 }
